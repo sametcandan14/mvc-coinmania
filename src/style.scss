@@ -37,4 +37,16 @@ form {
       height: 20px;
     }
   }
+  .error {
+    outline: 1px solid red !important;
+  }
+  p {
+    color: rgb(206, 77, 77);
+  }
+
+  .check-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
