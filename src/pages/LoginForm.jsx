@@ -8,6 +8,11 @@ const LoginForm = () => {
   const { user, signUser } = useContext(userContext);
 
   const navigate = useNavigate();
+
+  if (user) {
+    navigate("/coins");
+  }
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -126,7 +131,9 @@ const LoginForm = () => {
               <p>{formik.errors.terms} </p>
             )}
           </div>
-          <button type="submit">Kaydol</button>
+          <button disabled={formik.isSubmitting} type="submit">
+            Kaydol
+          </button>
         </form>
       </div>
     </div>
