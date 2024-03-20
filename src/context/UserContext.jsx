@@ -13,10 +13,8 @@ export const UserProvider = ({ children }) => {
 
     if (user) {
       setUser(user);
-      navigate("/coins");
     } else {
       setUser(null);
-      navigate("/");
     }
   }, []);
 
