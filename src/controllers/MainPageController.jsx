@@ -8,18 +8,20 @@ const MainPageController = () => {
   const [params, setParams] = useSearchParams();
 
   axios.defaults.baseURL = "https://api.coincap.io/v2/assets";
+  const page = params.get("page");
+
   useEffect(() => {
-    const page = params.get("page");
-
-    if (!page) {
-      setParams({ page: "1" });
-      return;
-    }
-
     axios
       .get(`/?limit=15&offset=${page}`)
       .then((res) => setCoins([...coins, ...res.data.data]));
   }, [params]);
+
+  useEffect(() => {
+    if (page != 1) {
+      setParams({ page: "1" });
+      return;
+    }
+  }, []);
   return <MainPageView coins={coins} />;
 };
 
