@@ -18,7 +18,7 @@ const MainPageController = () => {
 
     axios
       .get(`/?limit=15&offset=${page}`)
-      .then((res) => setCoins(res.data.data));
+      .then((res) => setCoins([...coins, ...res.data.data]));
   }, [params]);
   return <MainPageView coins={coins} />;
 };
