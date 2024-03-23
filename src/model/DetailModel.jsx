@@ -4,8 +4,9 @@ import { FaPercent } from "react-icons/fa";
 import { MdPriceChange, MdEventAvailable } from "react-icons/md";
 
 export class InfoLabel {
-  constructor(coin) {
+  constructor(coin, history) {
     this.coin = coin;
+    this.history = history;
     this.infoFields = [
       {
         icon: <SiCoinmarketcap />,
@@ -24,7 +25,7 @@ export class InfoLabel {
       },
       {
         icon: <FaPercent />,
-        label: "24 Saatlik Değişim %",
+        label: "24 Saatlik Değişim",
         value: this.coin?.changePercent24Hr,
       },
       {
@@ -33,5 +34,15 @@ export class InfoLabel {
         value: this.coin?.volumeUsd24Hr,
       },
     ];
+
+    this.chartData = {
+      labels: history?.map((i) => new Date(i.date).toLocaleDateString()),
+      datasets: [
+        {
+          label: "Fiyat Değeri",
+          data: history?.map((i) => Number(i.priceUsd).toFixed(2)),
+        },
+      ],
+    };
   }
 }
